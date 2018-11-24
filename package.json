@@ -1,0 +1,17 @@
+{
+  "name": "bearcare",
+  "version": "1.0.0",
+  "description": "Scrape UHS Data",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.16.4",
+    "jssoup": "0.0.10",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matthew Tang",
+  "license": "ISC"
+}
