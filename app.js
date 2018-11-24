@@ -7,7 +7,7 @@ var token = null;
 var redirect_uri = 'http://localhost:8888'; // Your redirect uri in case you are using apis
 var app = express();
 
-app.get('/', function(req, res) {
+app.get('/getCalendar', function(req, res) {
     
     
 	function getCalendar(callback){
@@ -83,8 +83,6 @@ app.get('/', function(req, res) {
 			events.push(ev);
 		return events.map( ev => ev.join());
 	}
-
-	//spotAPI('getUserPlaylists', { 'user' : 'solthums'});
 	getCalendar(obj => res.send(obj))
 	
 })
