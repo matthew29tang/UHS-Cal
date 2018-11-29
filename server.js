@@ -38,11 +38,12 @@ app.get('/getCalendar', function(req, res) {
 			json_event.day = date.split(", ")[0];
 			json_event.date = date.split(", ")[1].trim();
 			var info = ev.split("-").splice(1).join("-").split(",").map(el => el.trim()).filter(Boolean)
-			while (analyzeString(info[0]) === "day" || analyzeString(info[0]) === "date")
+			while (analyzeString(info[0]) === "daydate")
 				info = info.splice(1)
 			json_event.desc = info[0];
 			json_event.place_time = info.splice(1).join(" ")	
-			
+			if (json_event.date === "December 15 &amp; Sunday")
+				return json_events
 			json_events.push(json_event);
 		}
 		return json_events
@@ -50,19 +51,21 @@ app.get('/getCalendar', function(req, res) {
 	
 	function analyzeString(str){
 		var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+		var res = ""
 		if (!str)
 			return null
 			
 		for (var i in days){
 			if (str.search(days[i]) > -1)
-				return "day"
+				res += "day"
 		}
 		
 		var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 		for (var i in months){
 			if (str.search(months[i]) > -1 && str.search(months[i]) < 5)
-				return "date"
-		}		
+				res += "date"
+		}
+		return res
 	}
 	
 	function parseRawEvents(raw_events){
